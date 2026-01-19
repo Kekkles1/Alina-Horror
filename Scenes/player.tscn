@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://7yifgagdfbfl"]
+
+[ext_resource type="Texture2D" uid="uid://bkf0m2jeij177" path="res://icon.svg" id="1_v0iea"]
+
+[node name="Node3D" type="Node2D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+billboard = 2
+texture = ExtResource("1_v0iea")
