@@ -1,4 +1,4 @@
-# Godot 4
+# Godot 4 
 .godot/
 .import/
 .export/
@@ -7,7 +7,7 @@
 .idea/
 .android/
 
-# Builds
+# Build
 *.exe
 *.x86_64
 *.apk
