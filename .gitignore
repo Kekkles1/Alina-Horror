@@ -1,3 +1,24 @@
-# Godot 4+ specific ignores
+# Godot 4
 .godot/
-/android/
+.import/
+.export/
+.mono/
+.vscode/
+.idea/
+.android/
+
+# Builds
+*.exe
+*.x86_64
+*.apk
+*.aab
+*.zip
+*.translation
+*.uid
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
