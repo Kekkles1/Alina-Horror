@@ -1,36 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctnjr3pkdcl1r"]
+[gd_scene load_steps=2 format=3 uid="uid://ctnjr3pkdcl1r"]
 
-[ext_resource type="Script" uid="uid://b5vqrlclrxffh" path="res://Scenes/player.gd" id="1_tumq0"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5f4k"]
+[ext_resource type="PackedScene" uid="uid://7yifgagdfbfl" path="res://Scenes/player.tscn" id="1_tumq0"]
 
 [node name="Node" type="Node"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.7958013, 0.605558, 0, -0.605558, 0.7958013, 0, 18, 0)
+transform = Transform3D(1, 0, 0, 0, 0.9255868, 0.37853563, 0, -0.37853563, 0.9255868, 0, 20.009491, 0)
 shadow_enabled = true
 
 [node name="Ground" type="Node3D" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Ground"]
 use_collision = true
-size = Vector3(40, 2, 40)
+size = Vector3(30, 2, 30)
 
-[node name="Floor" type="Node3D" parent="."]
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_tumq0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.3365743, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Floor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.5773516, -20)
-use_collision = true
-size = Vector3(50, 10, 1)
+[node name="Walls" type="Node3D" parent="."]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.035704, 0)
-script = ExtResource("1_tumq0")
+[node name="CSGBox3D" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6222625, 5.064812, -15.340186)
+size = Vector3(35, 10, 1)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_k5f4k")
+[node name="CSGBox3D2" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -15.670275, 5.064812, 1.8821251)
+size = Vector3(35, 10, 1)
 
-[node name="Head" type="Node3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2860055, 0)
+[node name="CSGBox3D4" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 15.309822, 5.7274475, 2.7522745)
+size = Vector3(35, 10, 1)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
+[node name="CSGBox3D3" type="CSGBox3D" parent="Walls"]
+transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 1.7794075, 5.031381, 15.537325)
+size = Vector3(35, 10, 1)

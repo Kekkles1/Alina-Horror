@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://7yifgagdfbfl"]
+
+[ext_resource type="Script" uid="uid://b5vqrlclrxffh" path="res://Scripts/player.gd" id="1_v0iea"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_tumq0"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k5f4k"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v0iea"]
+top_radius = 0.1
+bottom_radius = 0.1
+height = 0.4
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+script = ExtResource("1_v0iea")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_tumq0")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_k5f4k")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1345489, 0)
+
+[node name="Flashlight" type="MeshInstance3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.49623746, -0.6666534, -0.8457824)
+mesh = SubResource("CylinderMesh_v0iea")
+skeleton = NodePath("../..")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Flashlight"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.99607843, 1, 0.37254903, 1)
+light_energy = 3.0
+spot_range = 8.466966
+spot_angle = 17.85043
+
+[node name="Camera3D" type="Camera3D" parent="Head"]

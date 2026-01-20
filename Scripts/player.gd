@@ -7,6 +7,8 @@ const MOUSE_SENS := 0.002
 
 var pitch := 0.0
 
+var flashlight_on:bool = true
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
@@ -23,6 +25,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	# ESC to release mouse
 	if event.is_action_pressed("ui_cancel"):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	if event.is_action_pressed("toggle_flashlight"):
+		print("Flashlight toggle")
+		flashlight_on = !flashlight_on
+		$Head/Flashlight/SpotLight3D.visible = flashlight_on
 
 func _physics_process(delta: float) -> void:
 	# Gravity
