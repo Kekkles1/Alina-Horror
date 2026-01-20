@@ -3,11 +3,11 @@ extends CharacterBody3D
 const SPEED := 10.0
 const MOUSE_SENS := 0.002
 
-@onready var head: Node3D = $Head
+@onready var HEAD: Node3D = $Head
 
-var pitch := 0.0
+var PITCH := 0.0
 
-var flashlight_on:bool = true
+var FLASHLIGHT_ON:bool = true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -18,9 +18,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(-event.relative.x * MOUSE_SENS)
 
 		# Up/Down look (Pitch) rotates the head
-		pitch -= event.relative.y * MOUSE_SENS
-		pitch = clamp(pitch, deg_to_rad(-89), deg_to_rad(89))
-		head.rotation.x = pitch
+		PITCH -= event.relative.y * MOUSE_SENS
+		PITCH = clamp(PITCH, deg_to_rad(-89), deg_to_rad(89))
+		HEAD.rotation.x = PITCH
 
 	# ESC to release mouse
 	if event.is_action_pressed("ui_cancel"):
@@ -28,8 +28,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 	if event.is_action_pressed("toggle_flashlight"):
 		print("Flashlight toggle")
-		flashlight_on = !flashlight_on
-		$Head/Flashlight/SpotLight3D.visible = flashlight_on
+		FLASHLIGHT_ON = !FLASHLIGHT_ON
+		$Head/Flashlight/SpotLight3D.visible = FLASHLIGHT_ON
 
 func _physics_process(delta: float) -> void:
 	# Gravity
