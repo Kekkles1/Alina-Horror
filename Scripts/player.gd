@@ -2,12 +2,21 @@ extends CharacterBody3D
 
 const WALK_SPEED := 3.0
 const RUN_SPEED := 10.0
+const CROUCH_SPEED := 1.0
+
+const CROUCH_DEPTH := -0.5
 const MOUSE_SENS := 0.002
 
 @onready var HEAD: Node3D = $Head
 
 var PITCH := 0.0
+var current_speed = WALK_SPEED
+var lerp_speed = 10.0
+# by default you are walking
 var RUN_ON: bool = false
+# by default you are not crouching
+var CROUCH_ON: bool = false
+# by default flashlight is on
 var FLASHLIGHT_ON: bool = true
 
 func _ready() -> void:
@@ -27,7 +36,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("toggle_run"):
 		RUN_ON = !RUN_ON
 		print("RUN:", RUN_ON)
-
+		
 	if event.is_action_pressed("toggle_flashlight"):
 		FLASHLIGHT_ON = !FLASHLIGHT_ON
 		$Head/Flashlight/SpotLight3D.visible = FLASHLIGHT_ON
@@ -39,6 +48,13 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var direction := (global_transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 
+	if Input.is_action_pressed("toggle_crouch"):
+		current_speed = CROUCH_SPEED
+		HEAD.position.y = lerp(HEAD.position.y,1.8+CROUCH_DEPTH,delta*lerp_speed)
+		CROUCH_ON = !CROUCH_ON
+	else:
+		HEAD.position.y = lerp(HEAD.position.y,1.8,delta*lerp_speed)
+		
 	var current_speed := RUN_SPEED if RUN_ON else WALK_SPEED
 
 	if direction != Vector3.ZERO:
