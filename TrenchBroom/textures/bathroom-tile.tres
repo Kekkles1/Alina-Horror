@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://rm1jj4uvp5nt"]
+
+[ext_resource type="Texture2D" uid="uid://cmmfeqs6h5xo7" path="res://TrenchBroom/textures/bathroom-tile.jpg" id="1_peqph"]
+
+[resource]
+albedo_texture = ExtResource("1_peqph")
+metallic_specular = 0.0
+texture_filter = 2
